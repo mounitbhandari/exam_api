@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Student;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 
 class StudentController extends Controller
 {
@@ -31,23 +32,30 @@ class StudentController extends Controller
      */
     public function save_students(Request $request)
     {
-        $student= new Student();
-        $student->student_name = $request->student_name;
-        $student->father_name = $request->father_name;
-        $student->mother_name = $request->mother_name;
-        $student->guardian_name = $request->guardian_name;
-        $student->relation_to_guardian = $request->relation_to_guardian;
-        $student->dob = $request->dob;
-        $student->sex = $request->sex;
-        $student->address = $request->address;
-        $student->city = $request->city;
-        $student->pin = $request->pin;
-        $student->guardian_contact_number = $request->guardian_contact_number;
-        $student->whatsapp_number = $request->whatsapp_number;
-        $student->email_id = $request->email_id;
-        $student->save();
+        DB::beginTransaction();
+        try{
+            $student= new Student();
+            $student->student_name = $request->student_name;
+            $student->father_name = $request->father_name;
+            $student->mother_name = $request->mother_name;
+            $student->guardian_name = $request->guardian_name;
+            $student->relation_to_guardian = $request->relation_to_guardian;
+            $student->dob = $request->dob;
+            $student->sex = $request->sex;
+            $student->address = $request->address;
+            $student->city = $request->city;
+            $student->pin = $request->pin;
+            $student->guardian_contact_number = $request->guardian_contact_number;
+            $student->whatsapp_number = $request->whatsapp_number;
+            $student->email_id = $request->email_id;
+            $student->save();
 
-        return response()->json(['success'=>1,'data'=> $student], 200,[],JSON_NUMERIC_CHECK);
+            return response()->json(['success'=>1,'data'=> $student], 200,[],JSON_NUMERIC_CHECK);
+        }catch(\Exception $e){
+            DB::rollBack();
+            return response()->json(['success'=>0,'exception'=>$e->getMessage()], 500);
+        }
+
 
     }
 
