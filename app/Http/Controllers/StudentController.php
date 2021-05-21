@@ -50,7 +50,7 @@ class StudentController extends Controller
 
         $validator = Validator::make($request->all(), [
             'studentName' => 'required',
-            'fatherName'=> 'required',
+            // 'fatherName'=> 'required',
             'guardianName'=> 'required',
             'relationToGuardian'=> 'required',
             'dob'=>'required','date_format(Y-M-D)',
