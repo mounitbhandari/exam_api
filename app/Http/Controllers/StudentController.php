@@ -35,19 +35,19 @@ class StudentController extends Controller
         DB::beginTransaction();
         try{
             $student= new Student();
-            $student->student_name = $request->student_name;
-            $student->father_name = $request->father_name;
-            $student->mother_name = $request->mother_name;
-            $student->guardian_name = $request->guardian_name;
-            $student->relation_to_guardian = $request->relation_to_guardian;
-            $student->dob = $request->dob;
-            $student->sex = $request->sex;
-            $student->address = $request->address;
-            $student->city = $request->city;
-            $student->pin = $request->pin;
-            $student->guardian_contact_number = $request->guardian_contact_number;
-            $student->whatsapp_number = $request->whatsapp_number;
-            $student->email_id = $request->email_id;
+            $student->student_name = $request->input('studentName');
+            $student->father_name = $request->input('fatherName');
+            $student->mother_name = $request->input('motherName');
+            $student->guardian_name = $request->input('guardianName');
+            $student->relation_to_guardian = $request->input('relationToGuardian');
+            $student->dob = $request->input('dob');
+            $student->sex = $request->input('sex');
+            $student->address = $request->input('address');
+            $student->city = $request->input('city');
+            $student->pin = $request->input('pin');
+            $student->guardian_contact_number = $request->input('guardianContactNumber');
+            $student->whatsapp_number = $request->input('whatsappNumber');
+            $student->email_id = $request->input('emailId');
             $student->save();
 
             return response()->json(['success'=>1,'data'=> $student], 200,[],JSON_NUMERIC_CHECK);
@@ -87,7 +87,7 @@ class StudentController extends Controller
      * @param  \App\Models\Student  $student
      * @return \Illuminate\Http\Response
      */
-    public function edit(Student $student)
+    public function update_students(Request $request)
     {
         //
     }

@@ -67,6 +67,8 @@ Route::group(array('prefix' => 'dev'), function() {
 
     Route::post("students",[StudentController::class,'save_students']);
 
+    Route::patch("students",[StudentController::class,'update_students']);
+
 
 });
 
