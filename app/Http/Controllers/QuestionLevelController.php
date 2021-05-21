@@ -12,9 +12,9 @@ class QuestionLevelController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function get_question_level()
     {
-        //
+        $request ->get 
     }
 
     /**

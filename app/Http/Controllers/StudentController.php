@@ -20,12 +20,16 @@ class StudentController extends Controller
      */
     public function get_sudents()
     {
+        //in case of resource 'collection' use for get a list of data
+
         $request= Student::get();
         return response()->json(['success'=>1,'data'=> StudentResource::collection($request)], 200,[],JSON_NUMERIC_CHECK);
     }
 
     public function get_student_by_id($id)
     {
+        //in case of resource 'new' use for get a list of data
+
         $result= Student::findOrFail($id);
         return response()->json(['success'=>1,'data'=> new StudentResource($result)], 200,[],JSON_NUMERIC_CHECK);
     }
@@ -56,8 +60,8 @@ class StudentController extends Controller
 
         if($validator->fails()){
             return response()->json(['success'=>0,'data'=>$message,'error'=>$validator->messages()], 406,[],JSON_NUMERIC_CHECK);
-        }else{
-            DB::beginTransaction();
+        }
+             DB::beginTransaction();
             try{
                 $student= new Student();
                 $student->student_name = $request->input('studentName');
@@ -81,7 +85,7 @@ class StudentController extends Controller
                 DB::rollBack();
                 return response()->json(['success'=>0,'exception'=>$e->getMessage()], 500);
             }
-        }
+
 
 
 
