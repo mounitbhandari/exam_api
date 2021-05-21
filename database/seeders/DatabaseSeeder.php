@@ -2,6 +2,7 @@
 
 namespace Database\Seeders;
 
+use App\Models\QuestionLevel;
 use App\Models\Student;
 use Illuminate\Database\Seeder;
 use App\Models\User;
@@ -161,7 +162,20 @@ class DatabaseSeeder extends Seeder
             'whatsapp_number' => '7985241065',
             'email_id' => 'robinchowdhuri@gmail.com',
         ]);
-        
+
+
+        QuestionLevel::create([
+            'question_level_name' => 'Hard'
+        ]);
+        QuestionLevel::create([
+            'question_level_name' => 'Standard'
+        ]);
+        QuestionLevel::create([
+            'question_level_name' => 'Medium'
+        ]);
+        QuestionLevel::create([
+            'question_level_name' => 'Easy'
+        ]);
 
 
 
