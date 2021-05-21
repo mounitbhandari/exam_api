@@ -69,6 +69,7 @@ Route::group(array('prefix' => 'dev'), function() {
 
     Route::patch("students",[StudentController::class,'update_students']);
 
+    Route::delete('students/{id}',[StudentController::class,'delete_students']);
 
 });
 
