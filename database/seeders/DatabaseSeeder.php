@@ -7,6 +7,9 @@ use App\Models\Student;
 use Illuminate\Database\Seeder;
 use App\Models\User;
 use App\Models\UserType;
+use App\Models\QuestionType;
+
+
 
 
 
@@ -175,6 +178,21 @@ class DatabaseSeeder extends Seeder
         ]);
         QuestionLevel::create([
             'question_level_name' => 'Easy'
+        ]);
+
+
+        // data of question_types
+        QuestionType::create([
+            'question_type_name' => 'mcq'
+        ]);
+        QuestionType::create([
+            'question_type_name' => 'saq'
+        ]);
+        QuestionType::create([
+            'question_type_name' => 'laq'
+        ]);
+        QuestionType::create([
+            'question_type_name' => 'descriptive_questions'
         ]);
 
 
