@@ -2,21 +2,19 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\QuestionLevel;
+use App\Models\Subject;
 use Illuminate\Http\Request;
 
-class QuestionLevelController extends Controller
+class SubjectController extends Controller
 {
     /**
      * Display a listing of the resource.
      *
      * @return \Illuminate\Http\Response
      */
-    public function get_question_levels()
+    public function index()
     {
-        $request= QuestionLevel::get();
-        return response()->json(['success'=>1,'data'=>$request], 200,[],JSON_NUMERIC_CHECK);
-
+        //
     }
 
     /**
@@ -43,10 +41,10 @@ class QuestionLevelController extends Controller
     /**
      * Display the specified resource.
      *
-     * @param  \App\Models\QuestionLevel  $questionLevel
+     * @param  \App\Models\Subject  $subject
      * @return \Illuminate\Http\Response
      */
-    public function show(QuestionLevel $questionLevel)
+    public function show(Subject $subject)
     {
         //
     }
@@ -54,10 +52,10 @@ class QuestionLevelController extends Controller
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  \App\Models\QuestionLevel  $questionLevel
+     * @param  \App\Models\Subject  $subject
      * @return \Illuminate\Http\Response
      */
-    public function edit(QuestionLevel $questionLevel)
+    public function edit(Subject $subject)
     {
         //
     }
@@ -66,10 +64,10 @@ class QuestionLevelController extends Controller
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Models\QuestionLevel  $questionLevel
+     * @param  \App\Models\Subject  $subject
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, QuestionLevel $questionLevel)
+    public function update(Request $request, Subject $subject)
     {
         //
     }
@@ -77,10 +75,10 @@ class QuestionLevelController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\Models\QuestionLevel  $questionLevel
+     * @param  \App\Models\Subject  $subject
      * @return \Illuminate\Http\Response
      */
-    public function destroy(QuestionLevel $questionLevel)
+    public function destroy(Subject $subject)
     {
         //
     }

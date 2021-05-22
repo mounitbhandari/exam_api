@@ -13,6 +13,7 @@ use App\Http\Controllers\StateController;
 use App\Http\Controllers\TransactionTypeController;
 use App\Http\Controllers\ExtraItemController;
 use App\Http\Controllers\PurchaseController;
+use App\Http\Controllers\QuestionLevelController;
 use App\Http\Controllers\SaleMasterController;
 use App\Http\Controllers\SaleController;
 use App\Http\Controllers\StudentController;
@@ -70,6 +71,9 @@ Route::group(array('prefix' => 'dev'), function() {
     Route::patch("students",[StudentController::class,'update_students']);
 
     Route::delete('students/{id}',[StudentController::class,'delete_students']);
+
+    //qustionLevels
+    Route::get("questionlevels",[QuestionLevelController::class,'get_question_levels']);
 
 });
 
