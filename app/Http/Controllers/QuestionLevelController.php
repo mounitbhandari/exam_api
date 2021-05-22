@@ -4,8 +4,6 @@ namespace App\Http\Controllers;
 
 use App\Models\QuestionLevel;
 use Illuminate\Http\Request;
-use App\Models\QuestionLevel;
-
 
 class QuestionLevelController extends Controller
 {
@@ -14,10 +12,9 @@ class QuestionLevelController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function get_question_levels()
+    public function get_question_level()
     {
-        $request= QuestionLevel::get();
-        return response()->json(['success'=>1,'data'=> $request], 200,[],JSON_NUMERIC_CHECK);
+        $request ->get 
     }
 
     /**
@@ -25,10 +22,9 @@ class QuestionLevelController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function get_question_level_by_id($id)
+    public function create()
     {
-        $request= QuestionLevel::findOrFail($id);
-        return response()->json(['success'=>1,'data'=> $result], 200,[],JSON_NUMERIC_CHECK);
+        //
     }
 
     /**
