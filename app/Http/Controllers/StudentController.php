@@ -41,22 +41,22 @@ class StudentController extends Controller
      */
     public function save_students(Request $request)
     {
-        // $validator= $request->validator([
-        //     'student_name'=> 'required',
-        //     'guardian_name'=> 'required',
-        //     'relation_to_guardian'=> 'required',
-        //     'dob'=>'required','date_format(Y-M-D)',
-        // ]);
-
-        $validator = Validator::make($request->all(), [
+        $rules = array(
             'studentName' => 'required',
             // 'fatherName'=> 'required',
             'guardianName'=> 'required',
             'relationToGuardian'=> 'required',
             'dob'=>'required','date_format(Y-M-D)',
-            ]);
+            'sex'=>'required|in:M,F,O'
+        );
 
-        $message= 'validation error';
+        $message= array(
+             'error' => 'validation error',
+            'sex' => 'please use M, F or O'
+        );
+
+
+        $validator = Validator::make($request->all(), $rules, $message);
 
         if($validator->fails()){
             return response()->json(['success'=>0,'data'=>$message,'error'=>$validator->messages()], 406,[],JSON_NUMERIC_CHECK);
