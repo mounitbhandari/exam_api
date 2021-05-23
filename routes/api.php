@@ -74,6 +74,8 @@ Route::group(array('prefix' => 'dev'), function() {
 
     //qustionLevels
     Route::get("questionlevels",[QuestionLevelController::class,'get_question_levels']);
+    Route::get("questionlevels/{id}",[QuestionLevelController::class,'get_question_levels_by_id']);
+
 
 });
 

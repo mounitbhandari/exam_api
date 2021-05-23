@@ -24,9 +24,10 @@ class QuestionLevelController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function create()
+    public function get_question_levels_by_id($id)
     {
-        //
+        $result= QuestionLevel::findOrFail($id);
+        return response()->json(['success'=>1,'data'=>$result], 200,[],JSON_NUMERIC_CHECK);
     }
 
     /**

@@ -180,6 +180,23 @@ class DatabaseSeeder extends Seeder
             'question_level_name' => 'Easy'
         ]);
 
+        QuestionLevel::create([
+            'question_level_name' => 'ab'
+        ]);
+
+        QuestionLevel::create([
+            'question_level_name' => 'az'
+        ]);
+
+        QuestionLevel::create([
+            'question_level_name' => 'asd'
+        ]);
+
+        QuestionLevel::create([
+            'question_level_name' => 'dfg'
+        ]);
+
+
 
         // data of question_types
         QuestionType::create([
