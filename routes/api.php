@@ -17,6 +17,7 @@ use App\Http\Controllers\QuestionLevelController;
 use App\Http\Controllers\SaleMasterController;
 use App\Http\Controllers\SaleController;
 use App\Http\Controllers\StudentController;
+use App\Http\Controllers\SubjectController;
 use App\Models\TransactionMaster;
 use App\Http\Controllers\TransactionController;
 use App\Models\Student;
@@ -78,7 +79,14 @@ Route::group(array('prefix' => 'dev'), function() {
     Route::post("questionlevels/{id}",[QuestionLevelController::class,'save_question_levels']);
     Route::patch("questionlevels",[QuestionLevelController::class,'update_question_levels']);
     Route::delete("questionlevels/{id}",[QuestionLevelController::class,'delete_question_levels']);
-    
+
+    //subject
+    Route::get("subjects",[SubjectController::class,'get_students']);
+    Route::get("subjects/{id}",[SubjectController::class,'get_student_by_id']);
+    Route::post("subjects",[SubjectController::class,'save_subjects']);
+    Route::patch("subjects",[SubjectController::class,'update_subjects']);
+    Route::delete("subjects/{id}",[SubjectController::class,'delete_subjects']);
+
 
 
 });

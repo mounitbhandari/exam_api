@@ -8,10 +8,7 @@ use Illuminate\Database\Seeder;
 use App\Models\User;
 use App\Models\UserType;
 use App\Models\QuestionType;
-
-
-
-
+use App\Models\Subject;
 
 class DatabaseSeeder extends Seeder
 {
@@ -167,6 +164,8 @@ class DatabaseSeeder extends Seeder
         ]);
 
 
+
+        //qustionLevels
         QuestionLevel::create([
             'question_level_name' => 'Hard'
         ]);
@@ -180,21 +179,21 @@ class DatabaseSeeder extends Seeder
             'question_level_name' => 'Easy'
         ]);
 
-        QuestionLevel::create([
-            'question_level_name' => 'ab'
-        ]);
+        // QuestionLevel::create([
+        //     'question_level_name' => 'ab'
+        // ]);
 
-        QuestionLevel::create([
-            'question_level_name' => 'az'
-        ]);
+        // QuestionLevel::create([
+        //     'question_level_name' => 'az'
+        // ]);
 
-        QuestionLevel::create([
-            'question_level_name' => 'asd'
-        ]);
+        // QuestionLevel::create([
+        //     'question_level_name' => 'asd'
+        // ]);
 
-        QuestionLevel::create([
-            'question_level_name' => 'dfg'
-        ]);
+        // QuestionLevel::create([
+        //     'question_level_name' => 'dfg'
+        // ]);
 
 
 
@@ -212,6 +211,40 @@ class DatabaseSeeder extends Seeder
             'question_type_name' => 'descriptive_questions'
         ]);
 
+
+
+        //subject
+        Subject::create([
+            'subject_name' => 'MS Word'
+        ]);
+        Subject::create([
+            'subject_name' => 'MS Excel'
+        ]);
+        Subject::create([
+            'subject_name' => 'MS Powepoint'
+        ]);
+        Subject::create([
+            'subject_name' => 'HTML'
+        ]);
+        Subject::create([
+            'subject_name' => 'Notepad'
+        ]);
+        Subject::create([
+            'subject_name' => 'C-Language'
+        ]);
+        Subject::create([
+            'subject_name' => 'C++Language'
+        ]);
+        Subject::create([
+            'subject_name' => 'JAVA'
+        ]);
+        Subject::create([
+            'subject_name' => 'PYTHON'
+        ]);
+        Subject::create([
+            'subject_name' => 'Web Design'
+        ]);
+        
 
 
 
