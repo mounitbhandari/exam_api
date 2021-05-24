@@ -58,9 +58,15 @@ class QuestionLevelController extends Controller
      * @param  \App\Models\QuestionLevel  $questionLevel
      * @return \Illuminate\Http\Response
      */
-    public function edit(QuestionLevel $questionLevel)
+    public function update_question_levels(Request $request)
+
     {
-        //
+        $questionLevel= new QuestionLevel();
+        $questionLevel= QuestionLevel::find($request->input('id'));
+        $questionLevel->question_level_name=$request->input('questionLevelName');
+
+        $questionLevel->save();
+        return response()->json(['success'=>1,'data'=> $questionLevel], 200,[],JSON_NUMERIC_CHECK);
     }
 
     /**
@@ -81,8 +87,14 @@ class QuestionLevelController extends Controller
      * @param  \App\Models\QuestionLevel  $questionLevel
      * @return \Illuminate\Http\Response
      */
-    public function destroy(QuestionLevel $questionLevel)
+    public function delete_question_levels($id)
     {
-        //
+        $questionLevel= QuestionLevel::find($id);
+        if(!empty($questionLevel)){
+            $result = $questionLevel->delete();
+        }else{
+            $result = false;
+        }
+        return response()->json(['success'=>$result,'id'=>$id], 200);
     }
 }
