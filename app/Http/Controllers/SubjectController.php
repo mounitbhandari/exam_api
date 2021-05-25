@@ -5,6 +5,9 @@ namespace App\Http\Controllers;
 
 use App\Models\Subject;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Validator;
+
 
 class SubjectController extends Controller
 {
@@ -38,11 +41,33 @@ class SubjectController extends Controller
      */
     public function save_subjects(Request $request)
     {
-        $subject = new Subject();
-        $subject->subject_name = $request->input('subjectName');
-        $subject->save();
+        $rules= array(
+            'subjectName' =>'required'
+        );
+        $message= array(
+            'error' => 'validation error',
+            'subjectName' => 'Subject name must be equired'
+        );
 
-        return response()->json(['success'=>1,'data'=> $subject], 200,[],JSON_NUMERIC_CHECK);
+        $validator = Validator::make($request->all(), $rules, $message);
+        if($validator->fails()){
+            return response()->json(['success'=>0,'data'=>$message,'error'=>$validator->messages()], 406,[],JSON_NUMERIC_CHECK);
+        };
+
+        DB::beginTransaction();
+        try{
+            $subject = new Subject();
+            $subject->subject_name = $request->input('subjectName');
+            $subject->save();
+            DB::commit();
+
+            return response()->json(['success'=>1,'data'=> $subject], 200,[],JSON_NUMERIC_CHECK);
+
+        }catch(\Exception $e){
+            DB::rollBack();
+            return response()->json(['success'=>0,'exception'=>$e->getMessage()], 500);
+        }
+
 
     }
 
