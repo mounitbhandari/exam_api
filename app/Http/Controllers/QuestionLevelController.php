@@ -64,8 +64,8 @@ class QuestionLevelController extends Controller
         $questionLevel= new QuestionLevel();
         $questionLevel= QuestionLevel::find($request->input('id'));
         $questionLevel->question_level_name=$request->input('questionLevelName');
-
         $questionLevel->save();
+        
         return response()->json(['success'=>1,'data'=> $questionLevel], 200,[],JSON_NUMERIC_CHECK);
     }
 

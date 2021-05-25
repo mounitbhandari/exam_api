@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers;
 
-
+use App\Http\Resources\SubjectResource;
 use App\Models\Subject;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
@@ -16,10 +16,10 @@ class SubjectController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function get_students(Request $request)
+    public function get_subjects(Request $request)
     {
         $request = Subject::get();
-        return response()->json(['success'=>1,'data'=> $request], 200,[],JSON_NUMERIC_CHECK);
+        return response()->json(['success'=>1,'data'=> SubjectResource::collection($request)], 200,[],JSON_NUMERIC_CHECK);
     }
 
     /**
@@ -27,10 +27,10 @@ class SubjectController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function get_student_by_id($id)
+    public function get_subject_by_id($id)
     {
         $request = Subject::findOrFail($id);
-        return response()->json(['success'=>1,'data'=>$request], 200,[],JSON_NUMERIC_CHECK);
+        return response()->json(['success'=>1,'data'=> new SubjectResource($request)], 200,[],JSON_NUMERIC_CHECK);
     }
 
     /**
@@ -46,7 +46,7 @@ class SubjectController extends Controller
         );
         $message= array(
             'error' => 'validation error',
-            'subjectName' => 'Subject name must be equired'
+            'subjectName' => 'Subject name must be required'
         );
 
         $validator = Validator::make($request->all(), $rules, $message);
@@ -61,7 +61,7 @@ class SubjectController extends Controller
             $subject->save();
             DB::commit();
 
-            return response()->json(['success'=>1,'data'=> $subject], 200,[],JSON_NUMERIC_CHECK);
+            return response()->json(['success'=>1,'data'=>  new SubjectResource($subject)], 200,[],JSON_NUMERIC_CHECK);
 
         }catch(\Exception $e){
             DB::rollBack();
@@ -112,7 +112,7 @@ class SubjectController extends Controller
         $subject->subject_name=$request->input('subjectName');
         $subject->save();
 
-        return response()->json(['success'=>1,'data'=> $subject], 200,[],JSON_NUMERIC_CHECK);
+        return response()->json(['success'=>1,'data'=>  new SubjectResource($subject)], 200,[],JSON_NUMERIC_CHECK);
 
     }
 

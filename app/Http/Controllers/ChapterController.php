@@ -2,9 +2,12 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Resources\ChapterResource;
 use App\Models\Chapter;
 use App\Models\Subject;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Validator;
 
 class ChapterController extends Controller
 {
@@ -17,7 +20,7 @@ class ChapterController extends Controller
     {
         $request = Chapter::get();
 
-        return response()->json(['success'=>1,'data'=> $request], 200,[],JSON_NUMERIC_CHECK);
+        return response()->json(['success'=>1,'data'=> ChapterResource::collection($request)], 200,[],JSON_NUMERIC_CHECK);
     }
 
     /**
@@ -29,7 +32,7 @@ class ChapterController extends Controller
     {
         $request = Chapter::findOrFail($id);
 
-        return response()->json(['success'=>1,'data'=> $request], 200,[],JSON_NUMERIC_CHECK);
+        return response()->json(['success'=>1,'data'=> new ChapterResource($request)], 200,[],JSON_NUMERIC_CHECK);
 
     }
 
@@ -41,12 +44,36 @@ class ChapterController extends Controller
      */
     public function save_chapter(Request $request)
     {
-        $chapter= new Chapter();
-        $chapter->subject_id=$request->input('subjectId');
-        $chapter->chapter_name=$request->input('chapterName');
-        $chapter->save();
+        $rules = array(
+            'subjectId' => 'required',
+            'chapterName' =>'required'
+        );
+        $message = array(
+            'error' => 'validator eorror',
+            'subjectId' => 'subject id must be required',
+            'chapterName' => 'chapter name must be required'
+        );
 
-        return response()->json(['success'=>1,'data'=> $chapter], 200,[],JSON_NUMERIC_CHECK);
+        $validator = Validator::make($request->all(), $rules, $message);
+
+        if($validator->fails()){
+            return response()->json(['success'=>0,'data'=>$message,'error'=>$validator->messages()], 406,[],JSON_NUMERIC_CHECK);
+        };
+
+        DB::beginTransaction();
+        try{
+            $chapter= new Chapter();
+            $chapter->subject_id=$request->input('subjectId');
+            $chapter->chapter_name=$request->input('chapterName');
+            $chapter->save();
+            DB::commit();
+
+            return response()->json(['success'=>1,'data'=> new ChapterResource($chapter)], 200,[],JSON_NUMERIC_CHECK);
+        }catch(\Exception $e){
+            DB::rollBack();
+            return response()->json(['success'=>0,'exception'=>$e->getMessage()], 500);
+        }
+
 
     }
 
@@ -65,7 +92,7 @@ class ChapterController extends Controller
         $chapter->save();
 
 
-        return response()->json(['success'=>1,'data'=> $chapter], 200,[],JSON_NUMERIC_CHECK);
+        return response()->json(['success'=>1,'data'=> new ChapterResource($chapter)], 200,[],JSON_NUMERIC_CHECK);
 
     }
 

@@ -12,9 +12,10 @@ class QuestionTypeController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function get_quetion_types()
     {
-        //
+        $request = QuestionType::get();
+        return response()->json(['success'=>1,'data'=>$request], 200,[],JSON_NUMERIC_CHECK);
     }
 
     /**

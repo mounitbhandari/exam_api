@@ -15,6 +15,7 @@ use App\Http\Controllers\TransactionTypeController;
 use App\Http\Controllers\ExtraItemController;
 use App\Http\Controllers\PurchaseController;
 use App\Http\Controllers\QuestionLevelController;
+use App\Http\Controllers\QuestionTypeController;
 use App\Http\Controllers\SaleMasterController;
 use App\Http\Controllers\SaleController;
 use App\Http\Controllers\StudentController;
@@ -67,11 +68,8 @@ Route::group(array('prefix' => 'dev'), function() {
     //students
     Route::get("students",[StudentController::class,'get_sudents']);
     Route::get("students/{id}",[StudentController::class,'get_student_by_id']);
-
     Route::post("students",[StudentController::class,'save_students']);
-
     Route::patch("students",[StudentController::class,'update_students']);
-
     Route::delete('students/{id}',[StudentController::class,'delete_students']);
 
     //qustionLevels
@@ -82,8 +80,8 @@ Route::group(array('prefix' => 'dev'), function() {
     Route::delete("questionlevels/{id}",[QuestionLevelController::class,'delete_question_levels']);
 
     //subject
-    Route::get("subjects",[SubjectController::class,'get_students']);
-    Route::get("subjects/{id}",[SubjectController::class,'get_student_by_id']);
+    Route::get("subjects",[SubjectController::class,'get_subjects']);
+    Route::get("subjects/{id}",[SubjectController::class,'get_subject_by_id']);
     Route::post("subjects",[SubjectController::class,'save_subjects']);
     Route::patch("subjects",[SubjectController::class,'update_subjects']);
     Route::delete("subjects/{id}",[SubjectController::class,'delete_subjects']);
@@ -95,6 +93,10 @@ Route::group(array('prefix' => 'dev'), function() {
     Route::post("chapters",[ChapterController::class,'save_chapter']);
     Route::patch("chapters",[ChapterController::class,'update_chapter']);
     Route::delete("chapters/{id}",[ChapterController::class,'delete_chapter']);
+
+    //questionTypes
+    Route::get("qustiontypes",[QuestionTypeController::class,'get_quetion_types']);
+    Route::get("qustiontypes/{id}",[QuestionTypeController::class,'get_quetion_type_by_id']);
 
 
 
