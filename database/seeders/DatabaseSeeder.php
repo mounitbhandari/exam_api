@@ -287,10 +287,10 @@ class DatabaseSeeder extends Seeder
         //options
 
         Option::insert([
-            ['question_id' => 1, 'option' => 'Hiding', 'is_answer' => 0],
-            ['question_id' => 1, 'option' => 'Bordering', 'is_answer' => 0],
-            ['question_id' => 1, 'option' => 'Cropping', 'is_answer' => 1],
-            ['question_id' => 1, 'option' => 'Cutting', 'is_answer' => 0],
+            ['question_id' => 2, 'option' => 'Hiding', 'is_answer' => 0],
+            ['question_id' => 2, 'option' => 'Bordering', 'is_answer' => 0],
+            ['question_id' => 2, 'option' => 'Cropping', 'is_answer' => 1],
+            ['question_id' => 2, 'option' => 'Cutting', 'is_answer' => 0],
         ]);
 
 
@@ -303,15 +303,15 @@ class DatabaseSeeder extends Seeder
         //options
 
         Option::insert([
-            ['question_id' => 1, 'option' => 'Ctrl + S', 'is_answer' => 0],
-            ['question_id' => 1, 'option' => 'Ctrl + C', 'is_answer' => 0],
-            ['question_id' => 1, 'option' => 'Ctrl + C + A', 'is_answer' => 0],
-            ['question_id' => 1, 'option' => 'Ctrl + E', 'is_answer' => 1],
+            ['question_id' => 3, 'option' => 'Ctrl + S', 'is_answer' => 0],
+            ['question_id' => 3, 'option' => 'Ctrl + C', 'is_answer' => 0],
+            ['question_id' => 3, 'option' => 'Ctrl + C + A', 'is_answer' => 0],
+            ['question_id' => 3, 'option' => 'Ctrl + E', 'is_answer' => 1],
         ]);
 
 
 
-        
+
 
 
 
