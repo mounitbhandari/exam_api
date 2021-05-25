@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\ChapterController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\UserController;
@@ -86,6 +87,14 @@ Route::group(array('prefix' => 'dev'), function() {
     Route::post("subjects",[SubjectController::class,'save_subjects']);
     Route::patch("subjects",[SubjectController::class,'update_subjects']);
     Route::delete("subjects/{id}",[SubjectController::class,'delete_subjects']);
+
+
+    //Chapters
+    Route::get("chapters",[ChapterController::class,'get_chapters']);
+    Route::get("chapters/{id}",[ChapterController::class,'get_chapter_by_id']);
+    Route::post("chapters",[ChapterController::class,'save_chapter']);
+    Route::patch("chapters",[ChapterController::class,'update_chapter']);
+    Route::delete("chapters/{id}",[ChapterController::class,'delete_chapter']);
 
 
 

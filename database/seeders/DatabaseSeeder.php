@@ -2,6 +2,7 @@
 
 namespace Database\Seeders;
 
+use App\Models\Chapter;
 use App\Models\QuestionLevel;
 use App\Models\Student;
 use Illuminate\Database\Seeder;
@@ -214,39 +215,51 @@ class DatabaseSeeder extends Seeder
 
 
         //subject
+
         Subject::create([
-            'subject_name' => 'MS Word'
+            'subject_name' => 'MS Office' //1
         ]);
         Subject::create([
-            'subject_name' => 'MS Excel'
+            'subject_name' => 'HTML'  //2
         ]);
         Subject::create([
-            'subject_name' => 'MS Powepoint'
+            'subject_name' => 'Notepad'  //3
         ]);
         Subject::create([
-            'subject_name' => 'HTML'
+            'subject_name' => 'C-Language' //4
         ]);
         Subject::create([
-            'subject_name' => 'Notepad'
+            'subject_name' => 'C++Language'  //5
         ]);
         Subject::create([
-            'subject_name' => 'C-Language'
+            'subject_name' => 'JAVA' //6
         ]);
         Subject::create([
-            'subject_name' => 'C++Language'
+            'subject_name' => 'PYTHON' //7
         ]);
         Subject::create([
-            'subject_name' => 'JAVA'
+            'subject_name' => 'Web Design'  //8
         ]);
-        Subject::create([
-            'subject_name' => 'PYTHON'
-        ]);
-        Subject::create([
-            'subject_name' => 'Web Design'
-        ]);
-        
 
 
+
+        //chapter
+        Chapter::create([
+            'subject_id' => 1,
+            'chapter_name' => 'MS Word'  //1
+        ]);
+        Chapter::create([
+            'subject_id' => 1,
+            'chapter_name' => 'MS Excel'  //2
+        ]);
+        Chapter::create([
+            'subject_id' => 1,
+            'chapter_name' => 'MS Powerpoint'  //3
+        ]);
+        Chapter::create([
+            'subject_id' => 1,
+            'chapter_name' => 'MS Access'  //4
+        ]);
 
 
         // Product has separate file
