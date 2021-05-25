@@ -3,6 +3,8 @@
 namespace Database\Seeders;
 
 use App\Models\Chapter;
+use App\Models\Option;
+use App\Models\Question;
 use App\Models\QuestionLevel;
 use App\Models\Student;
 use Illuminate\Database\Seeder;
@@ -261,12 +263,61 @@ class DatabaseSeeder extends Seeder
             'chapter_name' => 'MS Access'  //4
         ]);
 
+        //questions
+        Question::create([
+            'question_type_id'=> 1,'question_level_id' => 2, 'chapter_id' => 1, 'question' => 'In which view Headers and Footers are visible ?', 'marks'=> 1
+        ]);
 
-        // Product has separate file
-        // php artisan db:seed --class=ProductSeeder
+        //options
+
+        Option::insert([
+            ['question_id' => 1, 'option' => 'Normal View', 'is_answer' => 0],
+            ['question_id' => 1, 'option' => 'Page Layout View', 'is_answer' => 0],
+            ['question_id' => 1, 'option' => 'Print Layout View', 'is_answer' => 1],
+            ['question_id' => 1, 'option' => 'Draft', 'is_answer' => 0],
+        ]);
 
 
-        //Transaction types
+
+        //questions
+        Question::create([
+            'question_type_id'=> 1,'question_level_id' => 2, 'chapter_id' => 1, 'question' => 'The process of removing unwanted part of an image is called ?', 'marks'=> 1
+        ]);
+
+        //options
+
+        Option::insert([
+            ['question_id' => 1, 'option' => 'Hiding', 'is_answer' => 0],
+            ['question_id' => 1, 'option' => 'Bordering', 'is_answer' => 0],
+            ['question_id' => 1, 'option' => 'Cropping', 'is_answer' => 1],
+            ['question_id' => 1, 'option' => 'Cutting', 'is_answer' => 0],
+        ]);
+
+
+
+        //questions
+        Question::create([
+            'question_type_id'=> 1,'question_level_id' => 2, 'chapter_id' => 1, 'question' => 'To apply center alignment to a paragraph we can press ?', 'marks'=> 1
+        ]);
+
+        //options
+
+        Option::insert([
+            ['question_id' => 1, 'option' => 'Ctrl + S', 'is_answer' => 0],
+            ['question_id' => 1, 'option' => 'Ctrl + C', 'is_answer' => 0],
+            ['question_id' => 1, 'option' => 'Ctrl + C + A', 'is_answer' => 0],
+            ['question_id' => 1, 'option' => 'Ctrl + E', 'is_answer' => 1],
+        ]);
+
+
+
+        
+
+
+
+
+
+
 
     }
 }
