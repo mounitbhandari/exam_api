@@ -95,8 +95,11 @@ Route::group(array('prefix' => 'dev'), function() {
     Route::delete("chapters/{id}",[ChapterController::class,'delete_chapter']);
 
     //questionTypes
-    Route::get("qustiontypes",[QuestionTypeController::class,'get_quetion_types']);
-    Route::get("qustiontypes/{id}",[QuestionTypeController::class,'get_quetion_type_by_id']);
+    Route::get("questiontypes",[QuestionTypeController::class,'get_question_types']);
+    Route::get("questiontypes/{id}",[QuestionTypeController::class,'get_question_type_by_id']);
+    Route::post("questiontypes",[QuestionTypeController::class,'save_question_type']);
+    Route::patch("questiontypes",[QuestionTypeController::class,'update_question_type']);
+    Route::delete("questiontypes/{id}",[QuestionTypeController::class,'delete_question_type']);
 
 
 
