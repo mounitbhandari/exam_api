@@ -8,4 +8,7 @@ use Illuminate\Database\Eloquent\Model;
 class Option extends Model
 {
     use HasFactory;
+    public function get_all_question(){
+        return $this->belongsTo(Question::class,'question_id');
+    }
 }
