@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers;
 
-// use App\Http\Resources\QuestionLevelResource;
+use App\Http\Resources\QuestionLevelResource;
 use App\Models\QuestionLevel;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Http\Request;
@@ -64,7 +64,7 @@ class QuestionLevelController extends Controller
                 $questionLevel->save();
                 DB::commit();
 
-                return response()->json(['success'=>1,'data'=> new ($questionLevel)], 200,[],JSON_NUMERIC_CHECK);
+                return response()->json(['success'=>1,'data'=> new QuestionLevelResource ($questionLevel)], 200,[],JSON_NUMERIC_CHECK);
             }catch(\Exception $e){
                 DB::rollBack();
                 return response()->json(['success'=>0,'exception'=>$e->getMessage()], 500);
