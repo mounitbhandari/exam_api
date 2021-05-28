@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Resources\OptionResource;
 use App\Models\Option;
 use Illuminate\Http\Request;
 
@@ -12,9 +13,11 @@ class OptionController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function get_options()
     {
-        //
+        $request= Option::get();
+        return response()->json(['success'=>1,'data'=> OptionResource::collection($request)], 200,[],JSON_NUMERIC_CHECK);
+
     }
 
     /**

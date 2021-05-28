@@ -13,7 +13,9 @@ use App\Http\Controllers\CustomerCategoryController;
 use App\Http\Controllers\StateController;
 use App\Http\Controllers\TransactionTypeController;
 use App\Http\Controllers\ExtraItemController;
+use App\Http\Controllers\OptionController;
 use App\Http\Controllers\PurchaseController;
+use App\Http\Controllers\QuestionController;
 use App\Http\Controllers\QuestionLevelController;
 use App\Http\Controllers\QuestionTypeController;
 use App\Http\Controllers\SaleMasterController;
@@ -100,6 +102,14 @@ Route::group(array('prefix' => 'dev'), function() {
     Route::post("questiontypes",[QuestionTypeController::class,'save_question_type']);
     Route::patch("questiontypes",[QuestionTypeController::class,'update_question_type']);
     Route::delete("questiontypes/{id}",[QuestionTypeController::class,'delete_question_type']);
+
+    //options
+    Route::get("options",[OptionController::class,'get_options']);
+
+    //Questions
+    Route::get("questions",[QuestionController::class,'get_question']);
+    Route::get("options/questions/{id}",[QuestionController::class,'get_answers']);
+
 
 
 

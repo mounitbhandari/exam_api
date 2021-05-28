@@ -2,6 +2,8 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Resources\OptionResource;
+use App\Http\Resources\QuestionResource;
 use App\Models\Question;
 use Illuminate\Http\Request;
 
@@ -12,9 +14,11 @@ class QuestionController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function get_question()
     {
-        //
+        $request= Question::get();
+        return response()->json(['success'=>1,'data'=> QuestionResource::collection($request)], 200,[],JSON_NUMERIC_CHECK);
+
     }
 
     /**
@@ -22,9 +26,11 @@ class QuestionController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function create()
+    public function get_answers($id)
     {
-        //
+        $options= Question::findOrFail($id)->options->where('is_answer',1);
+        return response()->json(['success'=>1,'data'=> OptionResource::collection($options)], 200,[],JSON_NUMERIC_CHECK);
+
     }
 
     /**
