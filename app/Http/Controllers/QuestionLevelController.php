@@ -2,8 +2,11 @@
 
 namespace App\Http\Controllers;
 
+// use App\Http\Resources\QuestionLevelResource;
 use App\Models\QuestionLevel;
+use Illuminate\Support\Facades\Validator;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 
 class QuestionLevelController extends Controller
 {
@@ -36,9 +39,37 @@ class QuestionLevelController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function save_question_levels(Request $request)
     {
-        //
+        $rules = array(
+            'questionLevelName' => 'required',
+            
+        );
+
+        $message= array(
+             'error' => 'validation error',
+            
+        );
+
+
+        $validator = Validator::make($request->all(), $rules, $message);
+
+        if($validator->fails()){
+            return response()->json(['success'=>0,'data'=>$message,'error'=>$validator->messages()], 406,[],JSON_NUMERIC_CHECK);
+        }
+             DB::beginTransaction();
+            try{
+                $questionLevel= new QuestionLevel();
+                $questionLevel->question_level_name = $request->input('questionLevelName');
+                $questionLevel->save();
+                DB::commit();
+
+                return response()->json(['success'=>1,'data'=> new ($questionLevel)], 200,[],JSON_NUMERIC_CHECK);
+            }catch(\Exception $e){
+                DB::rollBack();
+                return response()->json(['success'=>0,'exception'=>$e->getMessage()], 500);
+            }
+
     }
 
     /**

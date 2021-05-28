@@ -75,7 +75,7 @@ Route::group(array('prefix' => 'dev'), function() {
     //qustionLevels
     Route::get("questionlevels",[QuestionLevelController::class,'get_question_levels']);
     Route::get("questionlevels/{id}",[QuestionLevelController::class,'get_question_levels_by_id']);
-    Route::post("questionlevels/{id}",[QuestionLevelController::class,'save_question_levels']);
+    Route::post("questionlevels",[QuestionLevelController::class,'save_question_levels']);
     Route::patch("questionlevels",[QuestionLevelController::class,'update_question_levels']);
     Route::delete("questionlevels/{id}",[QuestionLevelController::class,'delete_question_levels']);
 
